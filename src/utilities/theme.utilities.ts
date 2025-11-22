@@ -1,10 +1,5 @@
-import {
-  createTheme,
-  Theme as TTheme,
-  type Color,
-  type PaletteMode,
-  type ThemeOptions,
-} from '@mui/material';
+import type { Color, PaletteMode, ThemeOptions } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import { merge } from 'lodash';
 
 import {
@@ -112,7 +107,7 @@ export const renderTheme = (opts: {
   overrideOptions?: ThemeOptions;
   overrideComponents?: any;
 }) => {
-  const { mode, overrideOptions = {}, overrideComponents = {} } = opts;
+  const { mode, overrideOptions, overrideComponents } = opts;
   const themeTypography: any = Typography({ fontFamily: [fonts.roboto] });
   const theme = Palette({ mode, primaryColor: blue, secondaryColor: lightBlue });
 
@@ -152,7 +147,7 @@ export const renderTheme = (opts: {
 
   const mergedOptions: ThemeOptions = { ...themeOptions, ...overrideOptions };
 
-  const themes: TTheme = createTheme(mergedOptions);
+  const themes: any = createTheme(mergedOptions);
   let components = componentsOverride({ theme: themes });
   if (overrideComponents) {
     components = merge(components, overrideComponents(themes));
