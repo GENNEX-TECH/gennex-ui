@@ -22,6 +22,7 @@
     "declarationMap": true,
     "emitDeclarationOnly": false,
     "noEmit": true,
+    "composite": true,
 
     /* Linting */
     "strict": true,
