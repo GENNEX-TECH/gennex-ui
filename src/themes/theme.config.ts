@@ -1,7 +1,17 @@
+import { slate } from '@/themes/core';
+
+export const colors = {
+  hiContrast: slate[900],
+  loContrast: '#fff',
+  canvas: 'hsl(0 0% 93%)',
+  panel: '#fff',
+  transparentPanel: 'hsl(0 0% 0% / 97%)',
+  shadowLight: 'hsl(206 22% 7% / 35%)',
+  shadowDark: 'hsl(206 22% 7% / 20%)',
+};
+
 export const fonts = {
-  untitled: 'Untitled Sans, -apple-system, system-ui, sans-serif',
-  mono: 'Söhne Mono, menlo, monospace',
-  nunito: 'Nunito Sans',
+  roboto: 'Roboto, Arial, sans-serif',
   publicSans: '"Public Sans", sans-serif',
 };
 

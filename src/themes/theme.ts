@@ -1,12 +1,12 @@
 import { createTheme, ThemeOptions } from '@mui/material';
 import { blue, green } from '@mui/material/colors';
-
-import { Typography } from './typography';
-import { fonts } from './theme.config';
 import { viVN } from '@mui/material/locale';
 
+import { fonts } from './theme.config';
+import { Typography } from './typography';
+
 export const defaultTheme = () => {
-  const typography: any = Typography({ fontFamily: [fonts.nunito] });
+  const typography: any = Typography({ fontFamily: [fonts.roboto] });
   const options: ThemeOptions = {
     typography,
     palette: {

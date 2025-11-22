@@ -397,6 +397,7 @@ __metadata:
     "@eslint/js": "npm:^9.39.1"
     "@gennextech/eslint-react": "npm:^0.0.3"
     "@mui/material": "npm:^7.3.5"
+    "@radix-ui/colors": "npm:^3.0.0"
     "@types/lodash": "npm:^4"
     "@types/node": "npm:^24.10.1"
     "@types/react": "npm:^19.2.5"
@@ -421,7 +422,7 @@ __metadata:
     typescript: "npm:~5.9.3"
     typescript-eslint: "npm:^8.46.4"
     vite: "npm:rolldown-vite@7.2.5"
-    vite-plugin-dts: "npm:^4.5.4"
+    vite-plugin-dts: "npm:^4.3.0"
   peerDependencies:
     "@mui/material": ^7.3.5
     material-react-table: ^3.2.1
@@ -831,6 +832,13 @@ __metadata:
   version: 2.11.8
   resolution: "@popperjs/core@npm:2.11.8"
   checksum: 10c0/4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
+  languageName: node
+  linkType: hard
+
+"@radix-ui/colors@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@radix-ui/colors@npm:3.0.0"
+  checksum: 10c0/612c6bb4efe987f2d49aaca2f785687d08150da59a248328bc2b4e187ece4ef731c1dc5c6a9430fffcac4af9e65cf2f89ceb9806f8809940c9eb238b79d2cf2f
   languageName: node
   linkType: hard
 
@@ -5580,7 +5588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-dts@npm:^4.5.4":
+"vite-plugin-dts@npm:^4.3.0":
   version: 4.5.4
   resolution: "vite-plugin-dts@npm:4.5.4"
   dependencies:

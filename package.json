@@ -1,6 +1,6 @@
 {
   "name": "@gennextech/ui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "main": "./dist/gennex-ui.umd.js",
   "module": "./dist/gennex-ui.es.js",
@@ -35,6 +35,7 @@
     "react-router-dom": "^7.9.6"
   },
   "dependencies": {
+    "@radix-ui/colors": "^3.0.0",
     "axios": "^1.13.2",
     "lodash": "^4.17.21",
     "react-hook-form": "^7.66.1"
