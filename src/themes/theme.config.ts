@@ -1,0 +1,70 @@
+export const fonts = {
+  untitled: 'Untitled Sans, -apple-system, system-ui, sans-serif',
+  mono: 'Söhne Mono, menlo, monospace',
+  nunito: 'Nunito Sans',
+  publicSans: '"Public Sans", sans-serif',
+};
+
+export const fontSizes = {
+  1: 12,
+  2: 13,
+  3: 15,
+  4: 17,
+  5: 19,
+  6: 21,
+  7: 27,
+  8: 35,
+  9: 59,
+};
+
+export const radius = {
+  1: '4px',
+  2: '6px',
+  3: '8px',
+  4: '12px',
+  round: '50%',
+  pill: '9999px',
+};
+
+export const spaces = {
+  1: '5px',
+  2: '10px',
+  3: '15px',
+  4: '20px',
+  5: '25px',
+  6: '35px',
+  7: '45px',
+  8: '65px',
+  9: '80px',
+};
+
+export const sizes = {
+  1: '5px',
+  2: '10px',
+  3: '15px',
+  4: '20px',
+  5: '25px',
+  6: '35px',
+  7: '45px',
+  8: '65px',
+  9: '80px',
+  10: '105px',
+  11: '130px',
+};
+
+export const zIndices = {
+  1: '100',
+  2: '200',
+  3: '300',
+  4: '400',
+  max: '999',
+};
+
+export const media = {
+  bp1: 520,
+  bp2: 900,
+  bp3: 1200,
+  bp4: 1800,
+};
+
+export const assetSize = '256px';
