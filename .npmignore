@@ -1,0 +1,33 @@
+# Source files
+src/
+public/
+
+# Config files
+.gitignore
+.yarnrc.yml
+eslint.config.js
+prettier.config.cjs
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+vite.config.ts
+
+# Development files
+node_modules/
+.vscode/
+.idea/
+
+# Build artifacts
+*.log
+*.tsbuildinfo
+.tmp/
+
+# Test files
+**/*.test.ts
+**/*.test.tsx
+**/__tests__/
+
+# Development
+index.html
+yarn.lock
+package-lock.json
