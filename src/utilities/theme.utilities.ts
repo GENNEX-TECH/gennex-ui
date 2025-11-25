@@ -1,5 +1,5 @@
 import type { Color, PaletteMode, ThemeOptions } from '@mui/material';
-import type { Components, Theme } from '@mui/material/styles';
+import type { Components, Theme, TypographyVariantsOptions } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { merge } from 'lodash';
 
@@ -119,7 +119,7 @@ export const renderTheme = (props: RenderThemeOptions): Theme => {
     overrideOptions,
     overrideComponents,
   } = props;
-  const themeTypography: any = Typography({ fontFamily: [fonts.roboto] });
+  const themeTypography: TypographyVariantsOptions = Typography({ fontFamily: [fonts.roboto] });
   const theme = Palette({ mode, primaryColor, secondaryColor });
 
   const themeOptions: ThemeOptions = {
