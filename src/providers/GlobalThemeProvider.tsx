@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 
 import { DEFAULT_THEME, LOCALE_DEFAULT, THEME, ThemesMap } from '@/constants';
 import { Theme, ThemeMode, ThemeName } from '@/types';
@@ -26,17 +26,16 @@ const GlobalThemeContext = React.createContext<GlobalThemeContextType>({
 });
 
 export const GlobalThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
-  // Theme state
+  const initialThemeName = (localStorage.getItem('themeName') as ThemeName) || DEFAULT_THEME;
+
+  const [themeName, setThemeNameState] = React.useState<ThemeName>(initialThemeName);
+
   const [theme, setTheme] = React.useState<Theme>(() => {
-    return ThemesMap[themeName] || ThemesMap[DEFAULT_THEME];
+    return ThemesMap[initialThemeName] || ThemesMap[DEFAULT_THEME];
   });
 
   const [themeMode, setThemeMode] = React.useState<ThemeMode>(
     () => (localStorage.getItem('themeMode') as ThemeMode) || THEME.LIGHT_MODE_THEME,
-  );
-
-  const [themeName, setThemeNameState] = React.useState<ThemeName>(
-    () => (localStorage.getItem('themeName') as ThemeName) || DEFAULT_THEME,
   );
 
   // Locale state
@@ -58,21 +57,24 @@ export const GlobalThemeContextProvider = ({ children }: { children: React.React
       themeMode === THEME.LIGHT_MODE_THEME ? THEME.DARK_MODE_THEME : THEME.LIGHT_MODE_THEME;
     setThemeMode(next);
     localStorage.setItem('themeMode', next);
+  }, [themeMode]);
+
+  const setLocale = React.useCallback((locale: string) => {
+    setLocaleState(locale);
+    localStorage.setItem('locale', locale);
   }, []);
 
-  const setLocale = React.useCallback(
-    (locale: string) => {
-      setLocaleState(locale);
-      localStorage.setItem('locale', locale);
-    },
-    [locale],
-  );
+  const muiTheme = React.useMemo(() => {
+    if (themeMode === 'dark' && theme.dark) {
+      return theme.dark;
+    }
+    return theme.light;
+  }, [theme, themeMode]);
 
   return (
     <GlobalThemeContext.Provider
       value={{ theme, themeName, setThemeName, themeMode, toggleThemeMode, locale, setLocale }}>
-      <CssBaseline />
-      {children}
+      <ThemeProvider theme={muiTheme}>{children}</ThemeProvider>
     </GlobalThemeContext.Provider>
   );
 };

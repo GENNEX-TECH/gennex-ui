@@ -1,5 +1,5 @@
 import type { Color, PaletteMode, ThemeOptions } from '@mui/material';
-import type { Components, Theme, TypographyVariantsOptions } from '@mui/material/styles';
+import type { Components, Theme, TypographyVariants } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { merge } from 'lodash';
 
@@ -7,19 +7,17 @@ import {
   amber,
   blue,
   colors,
-  componentsOverride,
   cyan,
   fonts,
   grass,
   lightBlue,
   media,
-  Palette,
-  sizes,
   slate,
-  spaces,
-  tomato,
-  Typography as createTypography,
+  tomato
 } from '@/themes';
+import { componentsOverride } from '@/themes/core';
+import { Palette } from '@/themes/palette';
+import { Typography } from '@/themes/typography';
 
 export const GenColorPalette = (opts: { primaryColor: Color; secondaryColor: Color }) => {
   const { primaryColor, secondaryColor } = opts;
@@ -119,7 +117,7 @@ export const renderTheme = (props: RenderThemeOptions): Theme => {
     overrideOptions,
     overrideComponents,
   } = props;
-  const themeTypography: TypographyVariantsOptions = createTypography({
+  const themeTypography: Partial<TypographyVariants> = Typography({
     fontFamily: [fonts.roboto],
   });
   const theme = Palette({ mode, primaryColor, secondaryColor });
@@ -147,13 +145,6 @@ export const renderTheme = (props: RenderThemeOptions): Theme => {
     },
     direction: 'ltr',
     spacing: 5,
-    mixins: {
-      toolbar: {
-        minHeight: sizes[8],
-        paddingTop: spaces[1],
-        paddingBottom: spaces[1],
-      },
-    },
     palette: theme.palette,
     typography: themeTypography,
   };
