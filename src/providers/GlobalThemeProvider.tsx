@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { DEFAULT_THEME, LOCALE_DEFAULT, THEME, ThemesMap } from '@/constants';
 import { Theme, ThemeMode, ThemeName } from '@/types';
@@ -74,7 +74,10 @@ export const GlobalThemeContextProvider = ({ children }: { children: React.React
   return (
     <GlobalThemeContext.Provider
       value={{ theme, themeName, setThemeName, themeMode, toggleThemeMode, locale, setLocale }}>
-      <ThemeProvider theme={muiTheme}>{children}</ThemeProvider>
+      <ThemeProvider theme={muiTheme}>
+        <CssBaseline /> 
+        {children}
+      </ThemeProvider>
     </GlobalThemeContext.Provider>
   );
 };

@@ -1,5 +1,6 @@
-import { fontSizes } from '@/themes/theme.config';
 import { Theme } from '@mui/material';
+
+import { fontSizes } from '@/themes/theme.config';
 
 export default function Breadcrumbs(theme: Theme) {
   return {

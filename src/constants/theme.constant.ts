@@ -28,3 +28,8 @@ export const ThemesMap: Record<ThemeName, Theme> = {
     dark: greenDarkTheme,
   },
 };
+
+export const themeOptions: Theme[] = [
+  { name: 'blue', light: lightTheme, dark: darkTheme },
+  { name: 'green', light: greenLightTheme, dark: greenDarkTheme },
+];

@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { BreadcrumbProps, TBreadcrumbItem } from '@/types';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Breadcrumbs, Link as LinkTo, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { ChevronRight } from 'lucide-react';
 import { useTranslate } from 'ra-core';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import { BreadcrumbProps, TBreadcrumbItem } from '@/types';
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
   const { resources, separator = <ChevronRight />, ...rest } = props;

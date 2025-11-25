@@ -3,18 +3,7 @@ import type { Components, Theme, TypographyVariants } from '@mui/material/styles
 import { createTheme } from '@mui/material/styles';
 import { merge } from 'lodash';
 
-import {
-  amber,
-  blue,
-  colors,
-  cyan,
-  fonts,
-  grass,
-  lightBlue,
-  media,
-  slate,
-  tomato
-} from '@/themes';
+import { amber, blue, colors, cyan, fonts, grass, lightBlue, media, slate, tomato } from '@/themes';
 import { componentsOverride } from '@/themes/core';
 import { Palette } from '@/themes/palette';
 import { Typography } from '@/themes/typography';
