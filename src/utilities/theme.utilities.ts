@@ -18,7 +18,7 @@ import {
   slate,
   spaces,
   tomato,
-  Typography,
+  Typography as createTypography,
 } from '@/themes';
 
 export const GenColorPalette = (opts: { primaryColor: Color; secondaryColor: Color }) => {
@@ -119,7 +119,9 @@ export const renderTheme = (props: RenderThemeOptions): Theme => {
     overrideOptions,
     overrideComponents,
   } = props;
-  const themeTypography: TypographyVariantsOptions = Typography({ fontFamily: [fonts.roboto] });
+  const themeTypography: TypographyVariantsOptions = createTypography({
+    fontFamily: [fonts.roboto],
+  });
   const theme = Palette({ mode, primaryColor, secondaryColor });
 
   const themeOptions: ThemeOptions = {
