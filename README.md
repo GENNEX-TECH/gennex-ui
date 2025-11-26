@@ -459,7 +459,7 @@ MIT © [Gennex Technology Vietnam Ltd.](https://github.com/Kachitaro/gennex-ui)
 ## 📞 Support & Contact
 
 - 📧 Email: [Coming Soon]
-- 🐛 Issues: [GitHub Issues](https://github.com/Kachitaro/gennex-ui/issues)
+- 🐛 Issues: [GitHub Issues](https://github.com/GENNEX-TECH/gennex-ui/issues)
 - 📖 Documentation: [Coming Soon]
 
 ---
