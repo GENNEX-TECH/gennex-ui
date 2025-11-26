@@ -30,27 +30,43 @@ export default defineConfig({
       fileName: (format) => `gennex-ui.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        'react',
-        'react-dom',
-        'react/jsx-runtime',
-        'ra-core',
-        '@mui/material',
-        '@mui/icons-material',
-        'material-react-table',
-        'react-query',
-        'react-router-dom',
-      ],
+      external: (id) => {
+        return (
+          id.startsWith('react') ||
+          id.startsWith('react-dom') ||
+          id.startsWith('@mui') ||
+          id.startsWith('ra-core') ||
+          id.startsWith('ra-ui-materialui') ||
+          id.startsWith('react-router-dom') ||
+          id.startsWith('lucide-react') ||
+          id === 'lodash' ||
+          id.startsWith('simplebar-react')
+        );
+      },
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'jsxRuntime',
-          '@mui/material': 'MaterialUI',
           'ra-core': 'RaCore',
           'material-react-table': 'MaterialReactTable',
           'react-query': 'ReactQuery',
           'react-router-dom': 'ReactRouterDOM',
+          'lucide-react': 'LucideReact',
+          lodash: 'lodash',
+          'simplebar-react': 'SimpleBarReact',
+          '@mui/material': 'MaterialUI',
+          '@mui/material/LinearProgress': 'MaterialUI.LinearProgress',
+          '@mui/material/styles': 'MaterialUI.styles',
+          '@mui/material/locale': 'MaterialUI.locale',
+          '@mui/system': 'MaterialUISystem',
+          '@mui/icons-material': 'MaterialUIIcons',
+          '@mui/base': 'MaterialUIBase',
+          'react-device-detect': 'ReactDeviceDetect',
+        },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') return 'gennex-ui.css';
+          return assetInfo.name || '';
         },
       },
     },

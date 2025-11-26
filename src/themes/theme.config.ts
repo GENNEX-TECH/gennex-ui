@@ -1,7 +1,7 @@
-import { slate } from '@/themes/core';
+import { slateLight } from '@/themes/core';
 
 export const colors = {
-  hiContrast: slate[900],
+  hiContrast: slateLight[900],
   loContrast: '#fff',
   canvas: 'hsl(0 0% 93%)',
   panel: '#fff',
@@ -17,14 +17,14 @@ export const fonts = {
 
 export const fontSizes = {
   1: 12,
-  2: 14, 
+  2: 14,
   3: 15,
-  4: 17, 
+  4: 17,
   5: 19,
-  6: 21, 
-  7: 27, 
-  8: 35, 
-  9: 59, 
+  6: 21,
+  7: 27,
+  8: 35,
+  9: 59,
 };
 
 export const radius = {
@@ -52,12 +52,12 @@ export const sizes = {
   1: '5px',
   2: '10px',
   3: '18px',
-  4: '22px', 
-  5: '28px', 
-  6: '32px', 
-  7: '40px', 
+  4: '22px',
+  5: '28px',
+  6: '32px',
+  7: '40px',
   8: '48px',
-  9: '80px', 
+  9: '80px',
   10: '105px',
   11: '130px',
 };

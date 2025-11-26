@@ -1,115 +1,22 @@
-import type { Color, PaletteMode, ThemeOptions } from '@mui/material';
-import type { Components, Theme, TypographyVariants } from '@mui/material/styles';
+import type { ThemeOptions } from '@mui/material';
+import type { Theme, TypographyVariants } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { merge } from 'lodash';
 
-import { amber, blue, colors, cyan, fonts, grass, lightBlue, media, slate, tomato } from '@/themes';
+import { fonts, media } from '@/themes';
 import { componentsOverride } from '@/themes/core';
-import { Palette } from '@/themes/palette';
 import { Typography } from '@/themes/typography';
-
-export const GenColorPalette = (opts: { primaryColor: Color; secondaryColor: Color }) => {
-  const { primaryColor, secondaryColor } = opts;
-  const contrastText = colors.hiContrast;
-
-  return {
-    primary: {
-      lighter: primaryColor[50],
-      100: primaryColor[100],
-      200: primaryColor[200],
-      light: primaryColor[300],
-      400: primaryColor[400],
-      main: primaryColor[500],
-      600: primaryColor[600],
-      dark: primaryColor[700],
-      darker: primaryColor[800],
-      900: primaryColor[900],
-      A100: primaryColor.A100,
-      A200: primaryColor.A200,
-      A400: primaryColor.A400,
-      A700: primaryColor.A700,
-      contrastText: '#fff',
-    },
-    secondary: {
-      lighter: secondaryColor[50],
-      100: secondaryColor[100],
-      200: secondaryColor[200],
-      light: secondaryColor[300],
-      400: secondaryColor[400],
-      main: secondaryColor[500],
-      600: secondaryColor[600],
-      dark: secondaryColor[700],
-      darker: secondaryColor[800],
-      900: secondaryColor[900],
-      A100: secondaryColor.A100,
-      A200: secondaryColor.A200,
-      A400: secondaryColor.A400,
-      A700: secondaryColor.A700,
-      contrastText: '#fff',
-    },
-    error: {
-      lighter: tomato[50],
-      light: tomato[300],
-      main: tomato[500],
-      dark: tomato[600],
-      darker: tomato[800],
-      contrastText: '#fff',
-    },
-    warning: {
-      lighter: amber[50],
-      light: amber[300],
-      main: amber[500],
-      dark: amber[600],
-      darker: amber[800],
-      contrastText,
-    },
-    info: {
-      lighter: cyan[50],
-      light: cyan[300],
-      main: cyan[500],
-      dark: cyan[600],
-      darker: cyan[800],
-      contrastText,
-    },
-    success: {
-      lighter: grass[50],
-      light: grass[300],
-      main: grass[500],
-      dark: grass[600],
-      darker: grass[800],
-      contrastText: '#fff',
-    },
-    dark: {
-      lighter: slate[50],
-      light: slate[400],
-      main: slate[500],
-      dark: slate[700],
-      darker: slate[900],
-      contrastText: slate[500],
-    },
-  };
-};
-
-interface RenderThemeOptions {
-  mode: PaletteMode;
-  primaryColor?: Color;
-  secondaryColor?: Color;
-  overrideOptions?: ThemeOptions;
-  overrideComponents?: (theme: Theme) => Partial<Components<Omit<Theme, 'components'>>>;
-}
+import { RenderThemeOptions } from '@/types';
+import { Palette } from '@/themes/palette';
 
 export const renderTheme = (props: RenderThemeOptions): Theme => {
-  const {
-    mode,
-    primaryColor = blue,
-    secondaryColor = lightBlue,
-    overrideOptions,
-    overrideComponents,
-  } = props;
+  const { mode = 'light', preset, overrideOptions, overrideComponents } = props;
+  const isDark = mode === 'dark';
+
   const themeTypography: Partial<TypographyVariants> = Typography({
     fontFamily: [fonts.roboto],
   });
-  const theme = Palette({ mode, primaryColor, secondaryColor });
+  const theme = Palette({ mode, preset, isDark });
 
   const themeOptions: ThemeOptions = {
     breakpoints: {
@@ -140,15 +47,30 @@ export const renderTheme = (props: RenderThemeOptions): Theme => {
 
   const mergeThemeOptions = { ...themeOptions, ...overrideOptions };
 
-  const themes: any = createTheme(mergeThemeOptions);
+  const baseTheme: any = createTheme(mergeThemeOptions);
 
-  let components = componentsOverride({ theme: themes });
+  const componentsDefault = componentsOverride({ theme: baseTheme });
 
-  if (overrideComponents) {
-    components = merge(components, overrideComponents(themes));
+  const themeWithOverrides = createTheme(baseTheme, {
+    components: overrideComponents
+      ? merge(componentsDefault, overrideComponents(baseTheme))
+      : componentsDefault,
+  });
+
+  const cssVars = {
+    '--primary-main': theme.palette.primary.main,
+    '--primary-dark': theme.palette.primary.dark,
+    '--primary-contrast': theme.palette.primary.contrastText,
+    '--bg-default': themeWithOverrides.palette.background.default,
+    '--bg-paper': themeWithOverrides.palette.background.paper,
+    '--text-primary': themeWithOverrides.palette.text.primary,
+  };
+
+  if (typeof document !== 'undefined') {
+    Object.entries(cssVars).forEach(([k, v]) => {
+      document.documentElement.style.setProperty(k, v as string);
+    });
   }
 
-  themes.components = components;
-
-  return themes;
+  return themeWithOverrides;
 };

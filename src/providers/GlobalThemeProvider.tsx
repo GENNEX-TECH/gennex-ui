@@ -4,6 +4,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { DEFAULT_THEME, LOCALE_DEFAULT, THEME, ThemesMap } from '@/constants';
 import { Theme, ThemeMode, ThemeName } from '@/types';
+import { renderTheme } from '@/utilities';
 
 type GlobalThemeContextType = {
   theme: Theme;
@@ -65,17 +66,14 @@ export const GlobalThemeContextProvider = ({ children }: { children: React.React
   }, []);
 
   const muiTheme = React.useMemo(() => {
-    if (themeMode === 'dark' && theme.dark) {
-      return theme.dark;
-    }
-    return theme.light;
-  }, [theme, themeMode]);
+    return renderTheme({ mode: themeMode as any, preset: themeName as any });
+  }, [themeMode, themeName]);
 
   return (
     <GlobalThemeContext.Provider
       value={{ theme, themeName, setThemeName, themeMode, toggleThemeMode, locale, setLocale }}>
       <ThemeProvider theme={muiTheme}>
-        <CssBaseline /> 
+        <CssBaseline />
         {children}
       </ThemeProvider>
     </GlobalThemeContext.Provider>

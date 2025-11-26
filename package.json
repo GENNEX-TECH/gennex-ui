@@ -1,14 +1,21 @@
 {
   "name": "@gennextech/ui",
-  "version": "0.0.30",
+  "version": "0.1.0",
   "type": "module",
+  "sideEffects": false,
   "main": "./dist/gennex-ui.umd.js",
   "module": "./dist/gennex-ui.es.js",
   "types": "./dist/types.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/gennex-ui.es.js",
-      "require": "./dist/gennex-ui.umd.js",
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/gennex-ui.es.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/gennex-ui.umd.js"
+      },
       "types": "./dist/types.d.ts"
     },
     "./package.json": "./package.json"
@@ -26,20 +33,23 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@mui/material": "^7.3.5",
-    "material-react-table": "^3.2.1",
-    "ra-core": "^5.13.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-query": "^3.39.3",
-    "react-router-dom": "^7.9.6"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.0.0",
+    "@mui/material": "^7.3.0",
+    "@tanstack/react-query": "^5.0.0",
+    "ra-core": "^5.13.0",
+    "ra-ui-materialui": "^5.13.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "react-router-dom": "^6.0.0 || ^7.0.0"
   },
   "dependencies": {
     "@radix-ui/colors": "^3.0.0",
-    "axios": "^1.13.2",
     "lodash": "^4.17.21",
     "lucide-react": "^0.554.0",
-    "react-hook-form": "^7.66.1"
+    "react-device-detect": "^2.2.3",
+    "simplebar-react": "^3.3.2"
   },
   "devDependencies": {
     "@emotion/cache": "^11.14.0",
@@ -47,8 +57,10 @@
     "@emotion/styled": "^11.14.1",
     "@eslint/js": "^9.39.1",
     "@gennextech/eslint-react": "^0.0.3",
+    "@mui/icons-material": "^7.3.5",
     "@mui/material": "^7.3.5",
-    "@types/lodash": "^4",
+    "@tanstack/react-query": "^5.62.20",
+    "@types/lodash": "^4.17.17",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
@@ -65,12 +77,11 @@
     "ra-ui-materialui": "^5.13.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-query": "^3.39.3",
     "react-router-dom": "^7.9.6",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "npm:rolldown-vite@7.2.5",
-    "vite-plugin-dts": "^4.3.0"
+    "vite-plugin-dts": "^4.5.4"
   },
   "resolutions": {
     "vite": "npm:rolldown-vite@7.2.5"

@@ -3,7 +3,7 @@ import React from 'react';
 import { IconButton, Menu, MenuItem, Box } from '@mui/material';
 
 import { useGlobalThemeContext } from '@/providers';
-import { THEME, themeOptions } from '@/constants';
+import { THEME, themeOptions, themePresets } from '@/constants';
 import { MoonIcon, PaletteIcon, SunIcon } from 'lucide-react';
 
 interface IProps {
@@ -43,14 +43,12 @@ export const ThemeSwapper: React.FC<IProps> = (props) => {
         </IconButton>
         <span>Theme</span>
       </div>
-      {themeOptions.map((theme, index: number) => (
+      {themePresets.map((t: { name: string; label: string }, index: number) => (
         <MenuItem
-          onClick={(event) => handleChange(event, index)}
-          value={theme.name}
-          key={theme.name}
-          selected={theme.name === themeName}
-          sx={{ pl: 0 }}>
-          {ucFirst(theme.name)}
+          key={t.name}
+          onClick={(e) => handleChange(e, index)}
+          selected={themeName === t.name}>
+          {t.label}
         </MenuItem>
       ))}
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5 }}>
